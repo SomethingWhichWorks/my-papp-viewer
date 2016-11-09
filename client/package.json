@@ -1,0 +1,6 @@
+{
+	"name": "PhraseAppDesktopApp",
+	"version": "0.0.0",
+	"description": "Phrase App Desktop Viewer",
+	"main": "electronMain.js"
+}

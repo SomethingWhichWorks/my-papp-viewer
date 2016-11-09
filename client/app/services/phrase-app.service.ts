@@ -8,7 +8,7 @@ import * as _ from 'lodash';
 
 @Injectable()
 export class PhraseAppService {
-    private phraseAppUrl = '/api/phraseapp/data.json';  // URL to web api
+    private phraseAppUrl = 'https://phrase-app-viewer.herokuapp.com/api/phraseapp/data.json';  // URL to web api
     private phraseAppData: Message[] = [];
 
     constructor(private http: Http) {
