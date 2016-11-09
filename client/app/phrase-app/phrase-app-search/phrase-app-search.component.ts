@@ -2,9 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
+import * as _ from 'lodash';
 
 import { PhraseAppSearchService } from '../../services/phrase-app-search.service';
 import { Message } from '../models/message';
+
 
 @Component({
   moduleId: module.id,
@@ -55,4 +57,8 @@ export class PhraseAppSearchComponent implements OnInit {
   clearSelectedMessage(): void {
     this.selectedMessage = undefined;
   }
+
+  getKeys(object:Object): any[] {
+     return Object.keys(object);
+  } 
 }

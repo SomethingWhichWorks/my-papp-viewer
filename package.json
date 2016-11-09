@@ -5,7 +5,7 @@
   "main": "dist/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" ",
-    "start": "node server.js"
+    "start": "electron ./dist/module"
   },
   "keywords": [],
   "author": "Mahesh Kulkarni <kulkarni.mak172@gmail.com>",

@@ -137,7 +137,7 @@ gulp.task('watch:all', function() {
 gulp.task('build:client:all', ['build:app', 'build:index', 'build:libs', 'build:resources']);
 
 gulp.task('build', function(callback) {
-    runSequence('clean', 'build:client:all', callback);
+    runSequence('clean', 'build:client:all', 'watch:all', callback);
 });
 
 gulp.task('gulp-release', function(callback) {

@@ -6,9 +6,7 @@
 </form>
 <br>
 <div>
-	<!--<div *ngFor="let message of messages | async" (click)="setSelectedMessage(message)" class="search-result">
-		<h4> {{message.key}} </h4>
-	</div>-->
+
 	<div *ngFor="let message of messages | async; let rowIndex = index" class="search-result">
 		<div class="jumbotron">
 			<div class="row">
@@ -20,57 +18,18 @@
 				</div>
 			</div>
 			<br>
-			<div class="row" *ngIf="message.labels['en-engineering']">
-				<div class="col-md-2 message-locale">
-					<strong>{{message.labels['en-engineering'].locale}}</strong>
+			<div *ngFor="let key of getKeys(message.labels)" class="search-result">
+				<div class="row">
+					<div class="col-md-3 message-locale">
+						<strong>{{message.labels[key].locale}}</strong>
+					</div>
+					<div class="col-md-9 message-text">
+						{{message.labels[key].message}}
+					</div>
 				</div>
-				<div class="col-md-8 message-text">
-					{{message.labels['en-engineering'].message}}
-				</div>
-			</div>
-			<div class="row" *ngIf="message.labels['sv-SE']">
-				<div class="col-md-2 message-locale">
-					<strong>{{message.labels['sv-SE'].locale}}</strong>
-				</div>
-				<div class="col-md-8 message-text">
-					{{message.labels['sv-SE'].message}}
-				</div>
-			</div>
 
-			<div class="row" *ngIf="message.labels['da-dk']">
-				<div class="col-md-2 message-locale">
-					<strong>{{message.labels['da-dk'].locale}}</strong>
-				</div>
-				<div class="col-md-8 message-text">
-					<!--<input type="text" class="form-control" [(ngModel)]="message.labels['da-dk.message">-->
-					{{message.labels['da-dk'].message}}
-				</div>
-			</div>
-			<div class="row" *ngIf="message.labels['fi-FI']">
-				<div class="col-md-2 message-locale">
-					<strong>{{message.labels['fi-FI'].locale}}</strong>
-				</div>
-				<div class="col-md-8 message-text">
-					{{message.labels['fi-FI'].message}}
-				</div>
-			</div>
-			<div class="row" *ngIf="message.labels['sv-FI']">
-				<div class="col-md-2 message-locale">
-					<strong>{{message.labels['sv-FI'].locale}}</strong>
-				</div>
-				<div class="col-md-8 message-text">
-					{{message.labels['sv-FI'].message}}
-				</div>
-			</div>
-			<div class="row" *ngIf="message.labels['nb-NO']">
-				<div class="col-md-2 message-locale">
-					<strong>{{message.labels['nb-NO'].locale}}</strong>
-				</div>
-				<div class="col-md-8 message-text">
-					{{message.labels['nb-NO'].message}}
-				</div>
-			</div>
-		</div>
+			</div>		
+		</div>	
 	</div>
 
 	<div class="modal" id="message-details-modal">
