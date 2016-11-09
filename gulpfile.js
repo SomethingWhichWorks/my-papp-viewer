@@ -7,6 +7,8 @@ var concat = require('gulp-concat')
 var rename = require('gulp-rename');
 const tslint = require('gulp-tslint');
 var sourcemaps = require('gulp-sourcemaps');
+var usemin = require('gulp-usemin');
+var uglify = require('gulp-uglify');
 
 // get the dependencies
 var childProcess = require('child_process'),
@@ -72,6 +74,9 @@ gulp.task('build:libs', function() {
     gulp.src(mappedPaths, {
             base: 'node_modules'
         })
+        .pipe(usemin({
+            js: [uglify()]
+        }))
         .pipe(gulp.dest(fileConfigs.bundle.outputDirectory + "/libs"))
 
 });
@@ -104,6 +109,9 @@ gulp.task('build:app', function() {
         .pipe(sourcemaps.write(".", {
             sourceRoot: '/client'
         }))
+        .pipe(usemin({
+            js: [uglify()]
+        }))
         .pipe(gulp.dest(fileConfigs.bundle.outputDirectory))
 });
 
@@ -112,6 +120,9 @@ gulp.task('build:app', function() {
  */
 gulp.task("build:resources", () => {
     return gulp.src([fileConfigs.client.mainElectronFile, fileConfigs.client.mainElectronPackage])
+        .pipe(usemin({
+            js: [uglify()]
+        }))
         .pipe(gulp.dest(fileConfigs.bundle.outputDirectory));
 });
 

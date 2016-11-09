@@ -10,19 +10,22 @@ https://travis-ci.org/SomethingWhichWorks/phrase-app-viewer.svg?branch=master
 #Install Dependencies and typings 
 `npm install`
 
-#build both client and server applications
-`gulp`
+#build both client
+`gulp build`
 
-#Go to dist and run node app
-`cd dist`
-`node server`
+#test locally 
+Run following from base directory 
+`electron ./build`
 
-#visit browser to check application 
-`http://localhost:3000`   
 
+#Build Installer with NSIS
+`gulp build-electron` 
+ You can check the installer created in 'dist'
 
 #Help Blogs and URLs :
+`https://github.com/jelbourn/material2-app`
+`https://material2-app.firebaseapp.com`
 
-https://github.com/jelbourn/material2-app
-https://material2-app.firebaseapp.com/
-
+#Deployer and Installer:
+NSIS need to be installed so that the build tasks will work and installer will get created
+`http://nsis.sourceforge.net/Download`
