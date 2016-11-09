@@ -14,7 +14,7 @@ var childProcess = require('child_process'),
 
 var fileConfigs = {
     'bundle': {
-        'outputDirectory': 'dist/module',
+        'outputDirectory': 'build',
         'mainIndexFile': 'index.html'
     },
     'client': {
@@ -25,7 +25,7 @@ var fileConfigs = {
         tsConfigFile: 'client/tsconfig.json',
         mainIndexFile: 'client/index.html',
         mainElectronFile: 'client/electronMain.js',
-        mainElectronPackage: 'client/package.json',
+        mainElectronPackage: 'client/package.json'
     }
 };
 
@@ -117,7 +117,7 @@ gulp.task("build:resources", () => {
 
 gulp.task("copy:packagejson", () => {
     return gulp.src(["package.json"])
-        .pipe(gulp.dest(fileConfigs.bundle.outputDirectory));
+        .pipe(gulp.dest('build'));
 });
 
 
@@ -134,7 +134,7 @@ gulp.task('watch:all', function() {
     });
 });
 
-gulp.task('build:client:all', ['build:app', 'build:index', 'build:libs', 'build:resources']);
+gulp.task('build:client:all', ['build:app', 'build:index', 'build:libs', 'build:resources', 'copy:packagejson']);
 
 gulp.task('build', function(callback) {
     runSequence('clean', 'build:client:all', 'watch:all', callback);
@@ -151,4 +151,22 @@ gulp.task('run', function() {
     childProcess.spawn(electron, ['./dist/module'], {
         stdio: 'inherit'
     });
+});
+
+/** Create Installers */
+
+var release_windows = require('./build.windows');
+var os = require('os');
+
+gulp.task('build-electron', ['gulp-release'], function() {
+    switch (os.platform()) {
+        case 'darwin':
+            // execute build.osx.js 
+            break;
+        case 'linux':
+            //execute build.linux.js 
+            break;
+        case 'win32':
+            return release_windows.build();
+    }
 });
