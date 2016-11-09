@@ -1,0 +1,11 @@
+<div class="row">
+	<div class="col-md-2 refresh-button">
+		<button type="button" class="btn btn-primary" (click)="refreshKeys()" [disabled]="disableAll">Sync PhraseApp Keys</button>
+	</div>
+	<div class="col-md-10">
+		<h3>All keys were loaded {{getLastLoaded()}}</h3>
+	</div>
+</div>
+<br>
+
+<phrase-app-search></phrase-app-search>

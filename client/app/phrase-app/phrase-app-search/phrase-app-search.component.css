@@ -1,0 +1,17 @@
+.search-box {
+    width: 50%;
+}
+
+.message-locale {
+     font-size: 1.3em;
+     font-weight: bold;
+}
+
+.message-text {
+     font-size: 1.3em;
+}
+
+.message-key {
+     font-size: 1.5em;
+     font-weight: bold;
+}

@@ -1,0 +1,79 @@
+<div *ngIf="message">
+	<div class="row">
+		<h4> {{message.key}} </h4>
+	</div>
+
+	<div class="row" *ngIf="message.labels['en-engineering']">
+		<div class="col-md-2 message-locale">
+			<strong>{{message.labels['en-engineering'].locale}}</strong>
+		</div>
+		<div class="col-md-8 message-text">
+			{{message.labels['en-engineering'].message}}
+		</div>
+		<div class="col-md-2 action-buttons">
+			<a class="btn btn-primary" (click)="gotoDetail(message)" role="button">More Details</a>
+		</div>
+	</div>
+
+
+	<div class="row" *ngIf="message.labels['sv-SE']">
+		<div class="col-md-2 message-locale">
+			<strong>{{message.labels['sv-SE'].locale}}</strong>
+		</div>
+		<div class="col-md-8 message-text">
+			{{message.labels['sv-SE'].message}}
+		</div>
+		<div class="col-md-2 action-buttons">
+			<a class="btn btn-primary" (click)="gotoDetail(message)" role="button">More Details</a>
+		</div>
+	</div>
+
+	<div class="row" *ngIf="message.labels['da-dk']">
+		<div class="col-md-2 message-locale">
+			<strong>{{message.labels['da-dk'].locale}}</strong>
+		</div>
+		<div class="col-md-8 message-text">
+			<!--<input type="text" class="form-control" [(ngModel)]="message.labels['da-dk.message">-->
+			{{message.labels['da-dk'].message}}
+		</div>
+		<div class="col-md-2 action-buttons">
+			<a class="btn btn-primary" (click)="gotoDetail(message)" role="button">More Details</a>
+		</div>
+	</div>
+	<div class="row" *ngIf="message.labels['fi-FI']">
+		<div class="col-md-2 message-locale">
+			<strong>{{message.labels['fi-FI'].locale}}</strong>
+		</div>
+		<div class="col-md-8 message-text">
+			{{message.labels['fi-FI'].message}}
+		</div>
+		<div class="col-md-2 action-buttons">
+			<a class="btn btn-primary" (click)="gotoDetail(message)" role="button">More Details</a>
+		</div>
+	</div>
+	<div class="row" *ngIf="message.labels['sv-FI']">
+		<div class="col-md-2 message-locale">
+			<strong>{{message.labels['sv-FI.locale']}}</strong>
+		</div>
+		<div class="col-md-8 message-text">
+			{{message.labels['sv-FI.message']}}
+		</div>
+		<div class="col-md-2 action-buttons">
+			<a class="btn btn-primary" (click)="gotoDetail(message)" role="button">More Details</a>
+		</div>
+	</div>
+	<div class="row" *ngIf="message.labels['nb-NO']">
+		<div class="col-md-2 message-locale">
+			<strong>{{message.labels['nb-NO'].locale}}</strong>
+		</div>
+		<div class="col-md-8 message-text">
+			{{message.labels['nb-NO'].message}}
+		</div>
+		<div class="col-md-2 action-buttons">
+			<a class="btn btn-primary" (click)="gotoDetail(message)" role="button">More Details</a>
+		</div>
+	</div>
+	<div class="row">
+		<hr>
+	</div>
+</div>
