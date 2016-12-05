@@ -6,7 +6,7 @@ import * as _ from 'lodash';
 
 @Injectable()
 export class LoginService {
-    private apiEndpoint = 'https://phrase-app-viewer.herokuapp.com/api/login';  // URL to web api
+    private apiEndpoint = '/api/login';  // URL to web api
     constructor(private http: Http) {
     }
 

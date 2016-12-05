@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 
 /**
  * Phrase App components and services
@@ -11,21 +12,21 @@ import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
   {
-    path: '',
-    component: LoginComponent,
-    pathMatch: 'full'
-  },
-  {
     path: 'phrase-app-dashboard',
     component: PhraseAppDashboardComponent
   },
   {
     path: 'messageDetails/:key',
     component: MessageDetailsComponent
+  },
+  {
+    path: '**',
+    component: LoginComponent
   }
 ];
 
 @NgModule({
+  providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })

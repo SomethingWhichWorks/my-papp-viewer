@@ -7,8 +7,10 @@ import { Message } from '../phrase-app/models/message';
 import * as _ from 'lodash';
 
 @Injectable()
-export class PhraseAppService {
-    private phraseAppUrl = '/api/phraseapp';  // URL to web api
+export class PhraseAppDataService {
+    private downloadKeysEndpoint = '/api/phraseapp/keys';  // URL to web api
+    private downloadLabelDetailsEndpoint = '/api/phraseapp/label';  // URL to web api
+
     private phraseAppData: Message[] = [];
 
     constructor(private http: Http) {
@@ -17,7 +19,7 @@ export class PhraseAppService {
 
     private init() {
         this.http
-            .get(this.phraseAppUrl)
+            .get(this.downloadKeysEndpoint)
             .toPromise()
             .then(response => {
                 this.phraseAppData = response.json();
@@ -25,13 +27,13 @@ export class PhraseAppService {
             .catch(this.handleError);
     }
 
-    getMessages(forceRefresh:boolean): Promise<Message[]> {
+    getMessages(forceRefresh: boolean): Promise<Message[]> {
         return new Promise((resolve, reject) => {
             if (this.phraseAppData.length !== 0 && forceRefresh == false) {
                 resolve(this.phraseAppData);
             } else {
                 this.http
-                    .get(this.phraseAppUrl)
+                    .get(this.downloadKeysEndpoint)
                     .toPromise()
                     .then(response => {
                         this.phraseAppData = response.json();
@@ -48,6 +50,21 @@ export class PhraseAppService {
             resolve(_.find(this.phraseAppData, (message: Message) => {
                 return message.key === messageKey;
             }));
+        });
+    }
+
+    getLabelDetails(labelId: string) {
+        var url = this.downloadLabelDetailsEndpoint + '/' + labelId;
+
+        return new Promise((resolve, reject) => {
+            this.http
+                .get(url)
+                .toPromise()
+                .then(response => {
+                    this.phraseAppData = response.json();
+                    resolve(this.phraseAppData);
+                })
+                .catch(this.handleError);
         });
     }
 

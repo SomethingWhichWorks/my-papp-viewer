@@ -1,8 +1,28 @@
 <div class="wrap">
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<div class="collapse navbar-collapse">
+				<a class="navbar-brand" href="#">Phrase App Viewer</a>
+				<ul class="nav navbar-nav navbar-right">
+					<li><button type="button" class="btn btn-primary navbar-btn" 
+						(click)="authService.login()" *ngIf="!authService.authenticated()">Log In</button></li>
+					<li class="dropdown" *ngIf="authService.authenticated()">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+							Logged in as {{authService.getLoggedInUserName()}} <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<!--<li><a href="#">My Profile</a></li>-->
+							<!--<li><a href="#" *ngIf="authService.authenticated()">help</a></li>-->
+							<li><a href="#" (click)="authService.logout()" *ngIf="authService.authenticated()">Log Out</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	
 	<div class="page-header">
 		<h1>Phrase App Viewer</h1>
 	</div>
-	
 	<div class="container-fluid wrap-form">
 		<router-outlet></router-outlet>
 	</div>

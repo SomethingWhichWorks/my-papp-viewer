@@ -1,0 +1,19 @@
+.search-box {
+    width: 100%;
+}
+
+.message-locale {
+     font-size: 1.2em;
+     font-weight: bold;
+     color: #808080;
+}
+
+.message-text {
+     font-size: 1.1em;
+     color: #2F4F4F;
+}
+
+.message-key {
+     font-size: 1.5em;
+     font-weight: bold;
+}
