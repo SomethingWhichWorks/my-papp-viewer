@@ -15,7 +15,7 @@ export class PhraseAppService {
         this.init();
     }
 
-    private init() {
+    private init() {    
         this.http
             .get(this.phraseAppUrl)
             .toPromise()
