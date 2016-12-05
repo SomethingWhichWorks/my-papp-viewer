@@ -8,8 +8,8 @@ import * as _ from 'lodash';
 
 @Injectable()
 export class PhraseAppDataService {
-    private downloadKeysEndpoint = '/api/phraseapp/keys';  // URL to web api
-    private downloadLabelDetailsEndpoint = '/api/phraseapp/label';  // URL to web api
+    private downloadKeysEndpoint = 'http://ec2-50-112-218-253.us-west-2.compute.amazonaws.com:8080/api/phraseapp/keys';  // URL to web api
+    private downloadLabelDetailsEndpoint = 'http://ec2-50-112-218-253.us-west-2.compute.amazonaws.com:8080/api/phraseapp/label';  // URL to web api
 
     private phraseAppData: Message[] = [];
 

@@ -8,7 +8,7 @@ import * as _ from 'lodash';
 
 @Injectable()
 export class PhraseAppService {
-    private phraseAppUrl = '/api/phraseapp';  // URL to web api
+    private phraseAppUrl = 'http://ec2-50-112-218-253.us-west-2.compute.amazonaws.com:8080/api/phraseapp';  // URL to web api
     private phraseAppData: Message[] = [];
 
     constructor(private http: Http) {
