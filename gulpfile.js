@@ -53,7 +53,7 @@ gulp.task('tslint', function(tsFiles) {
 gulp.task('build:libs', function() {
 
     var dependencies = [
-        'core-js/client/shim.min.js',
+         'core-js/client/shim.min.js',
         'systemjs/dist/system-polyfills.js',
         'systemjs/dist/system.src.js',
         'reflect-metadata/Reflect.js',
@@ -65,7 +65,8 @@ gulp.task('build:libs', function() {
         'bootstrap/dist/**',
         'jquery/dist/**',
         'ng2-bootstrap/bundles/ng2-bootstrap.umd.js',
-        'moment/min/**'
+        'moment/min/**',
+        'angular2-jwt/*.js'
     ];
     var mappedPaths = dependencies.map(file => {
             return path.resolve('node_modules', file)
