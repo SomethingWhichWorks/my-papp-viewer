@@ -160,7 +160,7 @@ gulp.task('default', ['build']);
 
 // create the gulp task
 gulp.task('run', function() {
-    childProcess.spawn(electron, ['./dist/module'], {
+    childProcess.spawn(electron, ['./build'], {
         stdio: 'inherit'
     });
 });
