@@ -15,7 +15,7 @@ https://travis-ci.org/SomethingWhichWorks/phrase-app-viewer.svg?branch=master
 
 #test locally 
 Run following from base directory 
-`electron ./build`
+`electron build`
 
 
 #Build Installer with NSIS
@@ -29,3 +29,4 @@ Run following from base directory
 #Deployer and Installer:
 NSIS need to be installed so that the build tasks will work and installer will get created
 `http://nsis.sourceforge.net/Download`
+
