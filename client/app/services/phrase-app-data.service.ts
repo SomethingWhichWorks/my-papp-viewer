@@ -1,9 +1,9 @@
-import { Injectable } from '@angular/core';
-import { Headers, Http, Response } from '@angular/http';
+import {Injectable} from '@angular/core';
+import {Headers, Http, Response} from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
 
-import { Message } from '../phrase-app/models/message';
+import {Message} from '../phrase-app/models/message';
 import * as _ from 'lodash';
 
 @Injectable()
@@ -17,14 +17,21 @@ export class PhraseAppDataService {
         //this.init();
     }
 
-    private init() {
-        this.http
-            .get(this.downloadKeysEndpoint)
-            .toPromise()
-            .then(response => {
-                this.phraseAppData = response.json();
-            })
-            .catch(this.handleError);
+    loadData() {
+        return new Promise((resolve, reject) => {
+            this.http
+                .get(this.downloadKeysEndpoint)
+                .toPromise()
+                .then(response => {
+                    this.phraseAppData = response.json();
+                    resolve();
+                })
+                .catch(err => {
+                    this.handleError(err);
+                    reject(err);
+                });
+
+        });
     }
 
     getMessages(forceRefresh: boolean): Promise<Message[]> {

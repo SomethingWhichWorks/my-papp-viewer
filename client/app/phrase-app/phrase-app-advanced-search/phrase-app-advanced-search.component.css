@@ -3,17 +3,19 @@
 }
 
 .message-locale {
-     font-size: 1.2em;
-     font-weight: bold;
-     color: #808080;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #808080;
+    cursor: hand;
 }
 
 .message-text {
-     font-size: 1.1em;
-     color: #2F4F4F;
+    font-size: 1.1em;
+    color: #2F4F4F;
+    cursor: hand;
 }
 
 .message-key {
-     font-size: 1.5em;
-     font-weight: bold;
+    font-size: 1.5em;
+    font-weight: bold;
 }

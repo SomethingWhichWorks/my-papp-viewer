@@ -1,110 +1,114 @@
 <form>
-	<div class="form-group">
-		<h4> <strong>Search for any key</strong> </h4>
-		<input #searchBox id="search-box" class="form-control input-lg search-box" (keyup)="search(searchBox.value)" placeholder="pay or Pay or domestic or cross or CRoss or CroSs">
-	</div>
+    <div class="form-group">
+        <h4><strong>Search for any key</strong></h4>
+        <input #searchBox id="search-box"
+               name="searchBox"
+               class="form-control input-lg search-box"
+               [ngModel]='searchTerm'
+               (ngModelChange)='search($event)'
+               placeholder="pay or Pay or domestic or cross or CRoss or CroSs">
+    </div>
 </form>
 <br>
 <div>
-	<div *ngFor="let message of messages | async; let rowIndex = index;" class="search-result">
-		<div class="jumbotron">
-			<div class="row">
-				<div class="col-md-8 message-key">
-					{{message.key}}
-				</div>
-			</div>
-			<br>
-			
-			<div *ngFor="let key of getKeys(message.labels)" class="search-result">
-				<div class="row">
-					<div class="col-md-3 message-locale">
-						<strong>{{message.labels[key].locale.name}}</strong>
-					</div>
-					<div class="col-md-6 message-text">
-						<a (click)="showMessageDetails(message.labels[key].id)">
-							{{message.labels[key].content}}
-						</a>
-					</div>
-					<div class="col-md-3 message-text">
-						<button type="button" (click)="setSelectedLabel(message.labels[key].id)" class="btn btn-default" data-toggle="modal" data-target="#message-details-modal">Show metadata</button>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+    <div *ngFor="let message of messages | async; let rowIndex = index;" class="search-result">
+        <div class="jumbotron">
+            <div class="row">
+                <div class="col-md-8 message-key">
+                    {{message.key}}
+                </div>
+            </div>
+            <br>
 
-	<div class="modal" id="message-details-modal" *ngIf="selectedLabel">
-		<div class="modal-dialog bs-example-modal-lg">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" (click)="clearSelectedLabel()" data-dismiss="modal">&times;</button>
-					<strong>
-						<div class="row">
-								<div class="col-md-4 message-locale">
-									<strong>{{selectedLabel.locale.name}}</strong>
-								</div>
-								<div class="col-md-8 message-text">
-									{{selectedLabel.content}}
-								</div>
-						</div>
-					</strong>	
-				</div>
-				<div class="modal-body">
-					<div class="well">
-						<div class="row">
-							<div class="col-md-4 message-locale">
-								<strong>ID: </strong>
-							</div>
-							<div class="col-md-8 message-text">
-								{{selectedLabel.id}}
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-4 message-locale">
-								<strong>locale</strong>
-							</div>
-							<div class="col-md-8 message-text">
-								{{selectedLabel.locale.name}}
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-4 message-locale">
-								<strong>Locale Id</strong>
-							</div>
-							<div class="col-md-8 message-text">
-								{{selectedLabel.locale.id}}
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-4 message-locale">
-								<strong>Updated On</strong>
-							</div>
-							<div class="col-md-8 message-text">
-								{{toMomentCalendarText(selectedLabel.updated_at)}}
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-5 message-locale">
-								<strong>Updated By username</strong>
-							</div>
-							<div class="col-md-7 message-text">
-								{{selectedLabel.user.username}}
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-4 message-locale">
-								<strong>Updated By user</strong>
-							</div>
-							<div class="col-md-8 message-text">
-								{{selectedLabel.user.name}}
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-success" (click)="clearSelectedLabel()" data-dismiss="modal"> Close </button>
-				</div>
-			</div>
-		</div>
-	</div>
+            <div *ngFor="let key of getKeys(message.labels)" class="search-result">
+                <div class="row" (click)="setSelectedLabel(message.labels[key].id)" data-toggle="modal"
+                     data-target="#message-details-modal">
+                    <div class="col-md-3 message-locale">
+                        <strong>{{message.labels[key].locale.name}}</strong>
+                    </div>
+                    <div class="col-md-6 message-text">
+                        {{message.labels[key].content}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="message-details-modal" *ngIf="selectedLabel">
+        <div class="modal-dialog bs-example-modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" (click)="clearSelectedLabel()"
+                            data-dismiss="modal">&times;</button>
+                    <strong>
+                        <div class="row">
+                            <div class="col-md-4 message-locale">
+                                <strong>{{selectedLabel.locale.name}}</strong>
+                            </div>
+                            <div class="col-md-8 message-text">
+                                {{selectedLabel.content}}
+                            </div>
+                        </div>
+                    </strong>
+                </div>
+                <div class="modal-body">
+                    <div class="well">
+                        <div class="row">
+                            <div class="col-md-4 message-locale">
+                                <strong>ID: </strong>
+                            </div>
+                            <div class="col-md-8 message-text">
+                                {{selectedLabel.id}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 message-locale">
+                                <strong>locale</strong>
+                            </div>
+                            <div class="col-md-8 message-text">
+                                {{selectedLabel.locale.name}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 message-locale">
+                                <strong>Locale Id</strong>
+                            </div>
+                            <div class="col-md-8 message-text">
+                                {{selectedLabel.locale.id}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 message-locale">
+                                <strong>Updated On</strong>
+                            </div>
+                            <div class="col-md-8 message-text">
+                                {{toMomentCalendarText(selectedLabel.updated_at)}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-5 message-locale">
+                                <strong>Updated By username</strong>
+                            </div>
+                            <div class="col-md-7 message-text">
+                                {{selectedLabel.user.username}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 message-locale">
+                                <strong>Updated By user</strong>
+                            </div>
+                            <div class="col-md-8 message-text">
+                                {{selectedLabel.user.name}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" (click)="clearSelectedLabel()" data-dismiss="modal">
+                        Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
