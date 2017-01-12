@@ -30,3 +30,11 @@ Run following from base directory
 NSIS need to be installed so that the build tasks will work and installer will get created
 `http://nsis.sourceforge.net/Download`
 
+#Environment Variables and setup on travis 
+Travis Branch - `https://travis-ci.org/SomethingWhichWorks/my-papp-viewer`
+
+**Environment Variables needed by Travis : **
+HEROKU_REGISTERED_EMAIL:  cloudlearning1@gmail.com
+GITHUB_EMAIL:             kulkarni.mak172@gmail.com
+HEROKU_APP_KEY:           Cant share that :)
+
