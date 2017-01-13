@@ -15,7 +15,7 @@ cache:
   directories:
     - node_modules
 before_deploy: 
-  - cd demo    
+  - cd build    
 deploy:
   provider: heroku
   app: phrase-app-viewer
