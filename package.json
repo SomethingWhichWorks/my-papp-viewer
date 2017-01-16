@@ -4,7 +4,7 @@
   "description": "Simple Application to view phraseapp content",
   "scripts": {
     "test": "echo \"Error: no test specified\" ",
-    "start": "electron ./dist/module"
+    "start": "node ./build/server.js"
   },
   "keywords": [],
   "author": "Mahesh Kulkarni <kulkarni.mak172@gmail.com>",

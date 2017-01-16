@@ -20,7 +20,7 @@ var fileConfigs = {
         'mainIndexFile': 'index.html'
     },
     'client': {
-        sourceTsFiles: ['client/**/*.ts'],
+        sourceTsFiles: ['client/**/*.ts', 'server.ts'],
         sourceResourceFiles: ['client/**/*.html', 'client/**/*.css'],
         additionalFilesToCopy: ['client/systemjs.config.js', 'client/auth0-lock.js'],
         ignoreTsFiles: [],
