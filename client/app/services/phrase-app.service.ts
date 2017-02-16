@@ -8,24 +8,27 @@ import * as _ from 'lodash';
 
 @Injectable()
 export class PhraseAppService {
-    private phraseAppUrl = 'http://ec2-50-112-218-253.us-west-2.compute.amazonaws.com:8080/api/phraseapp';  // URL to web api
+    private phraseAppUrl = 'https://phrase-app-viewer.herokuapp.com/api/phraseapp';  // URL to web api
+    //private phraseAppUrl = '/api/phraseapp';  // URL to web api
     private phraseAppData: Message[] = [];
 
     constructor(private http: Http) {
-        //this.init();
+        this.init();
     }
 
     private init() {
-        this.http
-            .get(this.phraseAppUrl)
-            .toPromise()
-            .then(response => {
-                this.phraseAppData = response.json();
-            })
-            .catch(this.handleError);
+        this.getMessages(true).then((response) => {
+            if (response.message) {
+                setTimeout(() => {
+                    this.getMessages(true);
+                }, 10000);
+            }
+        });
     }
 
-    getMessages(forceRefresh:boolean): Promise<Message[]> {
+
+
+    getMessages(forceRefresh: boolean): Promise<any> {
         return new Promise((resolve, reject) => {
             if (this.phraseAppData.length !== 0 && forceRefresh == false) {
                 resolve(this.phraseAppData);
@@ -37,7 +40,10 @@ export class PhraseAppService {
                         this.phraseAppData = response.json();
                         resolve(this.phraseAppData);
                     })
-                    .catch(this.handleError);
+                    .catch(error => {
+                        console.error('An error occurred', error);
+                        reject(error);
+                    });
             }
         });
     }

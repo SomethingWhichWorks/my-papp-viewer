@@ -120,7 +120,7 @@ gulp.task('build:app', function() {
  * Copy all resources that are not TypeScript files into build directory.
  */
 gulp.task("build:resources", () => {
-    return gulp.src([fileConfigs.client.mainElectronFile, fileConfigs.client.mainElectronPackage])
+    return gulp.src([fileConfigs.client.mainElectronFile])
         .pipe(usemin({
             js: [uglify()]
         }))
@@ -129,6 +129,11 @@ gulp.task("build:resources", () => {
 
 gulp.task("copy:packagejson", () => {
     return gulp.src(["package.json"])
+        .pipe(gulp.dest('build'));
+});
+
+gulp.task("copy:packagejson:electron", () => {
+    return gulp.src([fileConfigs.client.mainElectronPackage])
         .pipe(gulp.dest('build'));
 });
 
@@ -147,13 +152,18 @@ gulp.task('watch:all', function() {
 });
 
 gulp.task('build:client:all', ['build:app', 'build:index', 'build:libs', 'build:resources', 'copy:packagejson']);
+gulp.task('build:client:all:electron', ['build:app', 'build:index', 'build:libs', 'build:resources', 'copy:packagejson:electron']);
 
 gulp.task('build', function(callback) {
     runSequence('clean', 'build:client:all', 'watch:all', callback);
 });
 
-gulp.task('gulp-release', function(callback) {
+gulp.task('build-release', function(callback) {
     runSequence('clean', 'copy:packagejson', 'build:client:all', callback);
+});
+
+gulp.task('build-release-electron', function(callback) {
+    runSequence('clean', 'copy:packagejson', 'build:client:all:electron', callback);
 });
 
 gulp.task('default', ['build']);
@@ -170,7 +180,7 @@ gulp.task('run', function() {
 var release_windows = require('./build.windows');
 var os = require('os');
 
-gulp.task('build-electron', ['gulp-release'], function() {
+gulp.task('build-electron', ['build-release-electron'], function() {
     switch (os.platform()) {
         case 'darwin':
             // execute build.osx.js 

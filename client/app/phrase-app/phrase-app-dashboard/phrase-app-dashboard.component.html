@@ -1,8 +1,12 @@
 <!-- <button #showProgressBarButton [hidden]="true" type="button" class="btn btn-primary" data-toggle="modal" data-target="#progress-bar">Open Progressbar</button> -->
 <progress-bar></progress-bar>
 
-<!--<div class="row">
-	<div class="col-md-4 refresh-button">
+<div class="message well" *ngIf="message">
+	{{message}}
+</div>
+
+<div class="row" *ngIf="!message">
+	<div class="col-md-4 refresh-button" >
 		<button type="button" class="btn btn-primary" (click)="refreshPhraseAppData()" [disabled]="disableAll">Sync PhraseApp Keys</button>
 	</div>
 	<div class="col-md-8 col-md-push-2">
@@ -10,16 +14,5 @@
 	</div>
 </div>
 <hr>
-<phrase-app-search></phrase-app-search>
--->
 
-<div class="row">
-	<div class="col-md-4 refresh-button">
-		<button type="button" class="btn btn-primary" (click)="refreshPhraseAppKeys()" [disabled]="disableAll">Sync PhraseApp Keys</button>
-	</div>
-	<div class="col-md-8 col-md-push-2">
-		<h3>All keys were loaded {{getLastLoaded()}}</h3>
-	</div>
-</div>
-<hr>
-<phrase-app-advanced-search></phrase-app-advanced-search>
+<phrase-app-search></phrase-app-search>

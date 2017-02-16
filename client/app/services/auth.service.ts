@@ -71,7 +71,6 @@ export class AuthService {
 
     public getLoggedInUserName() {
         var obj = JSON.parse(localStorage.getItem('profile'));
-        console.log(obj);
         if (obj) {
             return obj.name;
         } else {

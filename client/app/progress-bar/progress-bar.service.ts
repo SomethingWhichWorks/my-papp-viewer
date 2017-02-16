@@ -1,4 +1,5 @@
 import { Injectable, ViewChild, ElementRef } from '@angular/core';
+// $ will be resolved at runtime from the JQueryStatic Dependency
 
 @Injectable()
 export class ProgressBarService {
